@@ -1,0 +1,73 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #f5f7fa;
+}
+
+.sidebar {
+    -fx-padding: 28;
+    -fx-background-color: #172033;
+}
+
+.brand-title {
+    -fx-text-fill: white;
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+}
+
+.brand-subtitle {
+    -fx-text-fill: #aeb8ca;
+    -fx-font-size: 11px;
+}
+
+.navigation {
+    -fx-padding: 30 0 0 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d7deeb;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14;
+    -fx-background-radius: 7;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #26334d;
+    -fx-text-fill: white;
+}
+
+.content {
+    -fx-padding: 50;
+}
+
+.page-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #172033;
+}
+
+.page-description {
+    -fx-font-size: 15px;
+    -fx-text-fill: #687386;
+}
+
+.welcome-card {
+    -fx-padding: 25;
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e2e7ef;
+    -fx-border-radius: 12;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #172033;
+}
+
+.card-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #687386;
+}

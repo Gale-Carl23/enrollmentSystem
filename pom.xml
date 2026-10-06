@@ -27,7 +27,7 @@
         <flyway.version>10.20.1</flyway.version>
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.16</logback.version>
-        <bcrypt.version>0.10.2</bcrypt.version>
+        <bcrypt.version>0.4</bcrypt.version>
     </properties>
 
     <dependencies>
