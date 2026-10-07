@@ -1,9 +1,17 @@
 package com.school.enrollment.ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 public class MainController {
+
+    @FXML
+    private BorderPane mainLayout;
 
     @FXML
     private Label pageTitle;
@@ -21,10 +29,13 @@ public class MainController {
 
     @FXML
     private void showStudents() {
+
         pageTitle.setText("Students");
         pageDescription.setText(
-                "Student management will be implemented in a later stage."
+                "Search and manage registered students."
         );
+
+        loadView("/fxml/student-view.fxml");
     }
 
     @FXML
@@ -74,4 +85,27 @@ public class MainController {
                 "Reporting will be implemented in a later stage."
         );
     }
+
+    private void loadView(String resource) {
+
+    try {
+
+        FXMLLoader loader =
+                new FXMLLoader(
+                        getClass().getResource(resource)
+                );
+
+        Node view = loader.load();
+
+        mainLayout.setCenter(view);
+
+    } catch (IOException | RuntimeException e) {
+
+        System.err.println(
+                "Failed to load view: " + resource
+        );
+
+        e.printStackTrace();
+    }
+}
 }
