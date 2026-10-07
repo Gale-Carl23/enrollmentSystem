@@ -1,0 +1,3 @@
+com\school\enrollment\config\DatabaseConnectionTest.class
+com\school\enrollment\config\DatabaseMigrationTest.class
+com\school\enrollment\AppTest.class
