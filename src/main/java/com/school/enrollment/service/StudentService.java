@@ -12,7 +12,11 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public StudentService() {
-        this.studentRepository = new StudentRepository();
+        this(new StudentRepository());
+    }
+
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     public Student registerStudent(Student student)

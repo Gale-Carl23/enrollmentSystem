@@ -1,5 +1,8 @@
 package com.school.enrollment.service;
-
+import com.school.enrollment.config.TestDatabaseConnection;
+import com.school.enrollment.config.TestDatabaseMigration;
+import com.school.enrollment.repository.StudentRepository;
+import org.junit.jupiter.api.BeforeAll;
 import com.school.enrollment.config.DatabaseConnection;
 import com.school.enrollment.model.Student;
 import org.junit.jupiter.api.Test;
@@ -11,6 +14,10 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentServiceTest {
+    @BeforeAll
+    static void setUpDatabase() {
+        TestDatabaseMigration.migrate();
+    }
 
     @Test
     void shouldRegisterValidStudent() throws Exception {
@@ -40,11 +47,16 @@ class StudentServiceTest {
                 "ACTIVE"
         );
 
-        StudentService service =
-                new StudentService();
+        StudentRepository repository =
+                new StudentRepository(
+                        TestDatabaseConnection::getConnection
+                );
+
+        StudentService studentService =
+                new StudentService(repository);
 
         Student registered =
-                service.registerStudent(student);
+                studentService.registerStudent(student);
 
         assertNotNull(registered.getId());
         assertEquals(
@@ -181,7 +193,7 @@ void shouldRejectStudentWithoutAdmissionDate() {
                 
 
     private long createDepartment(
-            String uniqueCode
+        String uniqueCode
     ) throws Exception {
 
         String sql = """
@@ -195,7 +207,7 @@ void shouldRejectStudentWithoutAdmissionDate() {
 
         try (
                 Connection connection =
-                        DatabaseConnection.getConnection();
+                        TestDatabaseConnection.getConnection();
 
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
@@ -219,57 +231,56 @@ void shouldRejectStudentWithoutAdmissionDate() {
             return resultSet.getLong("id");
         }
     }
-
     private long createProgram(
-            long departmentId,
-            String uniqueCode
+        long departmentId,
+        String uniqueCode
     ) throws Exception {
 
-        String sql = """
-                INSERT INTO programs (
-                    department_id,
-                    code,
-                    name,
-                    duration_years
-                )
-                VALUES (?, ?, ?, ?)
-                RETURNING id
-                """;
+    String sql = """
+            INSERT INTO programs (
+                department_id,
+                code,
+                name,
+                duration_years
+            )
+            VALUES (?, ?, ?, ?)
+            RETURNING id
+            """;
 
-        try (
-                Connection connection =
-                        DatabaseConnection.getConnection();
+    try (
+            Connection connection =
+                    TestDatabaseConnection.getConnection();
 
-                PreparedStatement statement =
-                        connection.prepareStatement(sql)
-        ) {
+            PreparedStatement statement =
+                    connection.prepareStatement(sql)
+    ) {
 
-            statement.setLong(
-                    1,
-                    departmentId
-            );
+        statement.setLong(
+                1,
+                departmentId
+        );
 
-            statement.setString(
-                    2,
-                    "P" + uniqueCode
-            );
+        statement.setString(
+                2,
+                "P" + uniqueCode
+        );
 
-            statement.setString(
-                    3,
-                    "Service Test Program"
-            );
+        statement.setString(
+                3,
+                "Service Test Program"
+        );
 
-            statement.setInt(
-                    4,
-                    4
-            );
+        statement.setInt(
+                4,
+                4
+        );
 
-            var resultSet =
-                    statement.executeQuery();
+        var resultSet =
+                statement.executeQuery();
 
-            resultSet.next();
+        resultSet.next();
 
-            return resultSet.getLong("id");
-        }
+        return resultSet.getLong("id");
+    }
     }
 }

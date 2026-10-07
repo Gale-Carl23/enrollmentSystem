@@ -1,9 +1,10 @@
 package com.school.enrollment.repository;
 
-import com.school.enrollment.config.DatabaseConnection;
+import com.school.enrollment.config.TestDatabaseConnection;
+import com.school.enrollment.config.TestDatabaseMigration;
 import com.school.enrollment.model.Student;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.BeforeAll;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentRepositoryTest {
+
+    @BeforeAll
+    static void setUpDatabase() {
+        TestDatabaseMigration.migrate();
+    }
 
     @Test
     void shouldSaveAndFindStudent() throws Exception {
@@ -46,7 +52,9 @@ class StudentRepositoryTest {
         );
 
         StudentRepository repository =
-                new StudentRepository();
+            new StudentRepository(
+                    TestDatabaseConnection::getConnection
+            );
 
         Student saved =
                 repository.save(student);
@@ -96,7 +104,7 @@ class StudentRepositoryTest {
 
         try (
                 Connection connection =
-                        DatabaseConnection.getConnection();
+                        TestDatabaseConnection.getConnection();
 
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
@@ -140,7 +148,7 @@ class StudentRepositoryTest {
 
         try (
                 Connection connection =
-                        DatabaseConnection.getConnection();
+                        TestDatabaseConnection.getConnection();
 
                 PreparedStatement statement =
                         connection.prepareStatement(sql)

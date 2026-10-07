@@ -1,6 +1,9 @@
 com\school\enrollment\config\DatabaseConnectionTest.class
 com\school\enrollment\repository\StudentRepositoryTest.class
-com\school\enrollment\config\DatabaseMigrationTest.class
 com\school\enrollment\AppTest.class
+com\school\enrollment\config\TestDatabaseMigration.class
+com\school\enrollment\config\DatabaseMigrationTest.class
 com\school\enrollment\service\StudentServiceTest.class
 com\school\enrollment\config\TestDatabaseConnection.class
+com\school\enrollment\config\TestDatabaseConnectionTest.class
+com\school\enrollment\config\TestDatabaseMigrationTest.class
