@@ -5,4 +5,6 @@ C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollmen
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\DatabaseMigration.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\FlywayConfig.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\Main.java
+C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\model\Student.java
+C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\repository\StudentRepository.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\ui\MainController.java

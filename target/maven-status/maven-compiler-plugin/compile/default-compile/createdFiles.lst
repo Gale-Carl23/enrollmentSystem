@@ -1,8 +1,10 @@
+com\school\enrollment\Main.class
+com\school\enrollment\config\DatabaseConnection.class
+com\school\enrollment\config\DatabaseConfig.class
+com\school\enrollment\model\Student.class
 com\school\enrollment\App.class
 com\school\enrollment\config\FlywayConfig.class
 com\school\enrollment\config\AppConfig.class
 com\school\enrollment\config\DatabaseMigration.class
-com\school\enrollment\Main.class
-com\school\enrollment\config\DatabaseConnection.class
+com\school\enrollment\repository\StudentRepository.class
 com\school\enrollment\ui\MainController.class
-com\school\enrollment\config\DatabaseConfig.class
