@@ -1,4 +1,5 @@
 com\school\enrollment\Main.class
+com\school\enrollment\service\StudentService.class
 com\school\enrollment\config\DatabaseConnection.class
 com\school\enrollment\config\DatabaseConfig.class
 com\school\enrollment\model\Student.class

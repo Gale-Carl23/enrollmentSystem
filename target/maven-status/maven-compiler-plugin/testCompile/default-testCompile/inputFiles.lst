@@ -2,3 +2,4 @@ C:\enrollment-system\school-enrollment-system\src\test\java\com\school\enrollmen
 C:\enrollment-system\school-enrollment-system\src\test\java\com\school\enrollment\config\DatabaseConnectionTest.java
 C:\enrollment-system\school-enrollment-system\src\test\java\com\school\enrollment\config\DatabaseMigrationTest.java
 C:\enrollment-system\school-enrollment-system\src\test\java\com\school\enrollment\repository\StudentRepositoryTest.java
+C:\enrollment-system\school-enrollment-system\src\test\java\com\school\enrollment\service\StudentServiceTest.java
