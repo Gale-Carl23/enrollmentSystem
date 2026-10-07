@@ -2,5 +2,7 @@ C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollmen
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\AppConfig.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\DatabaseConfig.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\DatabaseConnection.java
+C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\DatabaseMigration.java
+C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\config\FlywayConfig.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\Main.java
 C:\enrollment-system\school-enrollment-system\src\main\java\com\school\enrollment\ui\MainController.java

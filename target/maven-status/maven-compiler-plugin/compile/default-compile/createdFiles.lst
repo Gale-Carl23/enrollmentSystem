@@ -1,5 +1,7 @@
 com\school\enrollment\App.class
+com\school\enrollment\config\FlywayConfig.class
 com\school\enrollment\config\AppConfig.class
+com\school\enrollment\config\DatabaseMigration.class
 com\school\enrollment\Main.class
 com\school\enrollment\config\DatabaseConnection.class
 com\school\enrollment\ui\MainController.class
