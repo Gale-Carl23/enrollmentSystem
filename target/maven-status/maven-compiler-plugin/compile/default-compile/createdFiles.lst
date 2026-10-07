@@ -1,0 +1,6 @@
+com\school\enrollment\App.class
+com\school\enrollment\config\AppConfig.class
+com\school\enrollment\Main.class
+com\school\enrollment\config\DatabaseConnection.class
+com\school\enrollment\ui\MainController.class
+com\school\enrollment\config\DatabaseConfig.class
