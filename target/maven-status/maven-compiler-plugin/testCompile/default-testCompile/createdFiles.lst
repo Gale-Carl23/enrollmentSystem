@@ -3,3 +3,4 @@ com\school\enrollment\repository\StudentRepositoryTest.class
 com\school\enrollment\config\DatabaseMigrationTest.class
 com\school\enrollment\AppTest.class
 com\school\enrollment\service\StudentServiceTest.class
+com\school\enrollment\config\TestDatabaseConnection.class

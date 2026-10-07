@@ -1,3 +1,4 @@
+com\school\enrollment\repository\ConnectionProvider.class
 com\school\enrollment\Main.class
 com\school\enrollment\service\StudentService.class
 com\school\enrollment\config\DatabaseConnection.class

@@ -8,8 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 public class StudentRepository {
 
+    private final ConnectionProvider connectionProvider;
+
+    public StudentRepository() {
+        this(DatabaseConnection::getConnection);
+    }
+
+    public StudentRepository(
+            ConnectionProvider connectionProvider
+    ) {
+        this.connectionProvider = connectionProvider;
+    }
     public Student save(Student student) throws SQLException {
 
         String sql = """
@@ -29,7 +41,9 @@ public class StudentRepository {
                 """;
 
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection =
+                        connectionProvider.getConnection();
+
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
         ) {
@@ -58,10 +72,13 @@ public class StudentRepository {
 
             statement.setString(9, student.getStatus());
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (ResultSet resultSet =
+                         statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    student.setId(resultSet.getLong("id"));
+                    student.setId(
+                            resultSet.getLong("id")
+                    );
                 }
             }
         }
@@ -69,7 +86,9 @@ public class StudentRepository {
         return student;
     }
 
-    public Optional<Student> findById(Long id) throws SQLException {
+    public Optional<Student> findById(
+            Long id
+    ) throws SQLException {
 
         String sql = """
                 SELECT
@@ -88,17 +107,22 @@ public class StudentRepository {
                 """;
 
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection =
+                        connectionProvider.getConnection();
+
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
         ) {
 
             statement.setLong(1, id);
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (ResultSet resultSet =
+                         statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return Optional.of(mapRow(resultSet));
+                    return Optional.of(
+                            mapRow(resultSet)
+                    );
                 }
             }
         }
@@ -127,17 +151,22 @@ public class StudentRepository {
                 """;
 
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection =
+                        connectionProvider.getConnection();
+
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
         ) {
 
             statement.setString(1, studentNumber);
 
-            try (ResultSet resultSet = statement.executeQuery()) {
+            try (ResultSet resultSet =
+                         statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return Optional.of(mapRow(resultSet));
+                    return Optional.of(
+                            mapRow(resultSet)
+                    );
                 }
             }
         }
@@ -145,7 +174,8 @@ public class StudentRepository {
         return Optional.empty();
     }
 
-    public List<Student> findAll() throws SQLException {
+    public List<Student> findAll()
+            throws SQLException {
 
         String sql = """
                 SELECT
@@ -163,25 +193,33 @@ public class StudentRepository {
                 ORDER BY last_name, first_name
                 """;
 
-        List<Student> students = new ArrayList<>();
+        List<Student> students =
+                new ArrayList<>();
 
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection =
+                        connectionProvider.getConnection();
+
                 PreparedStatement statement =
                         connection.prepareStatement(sql);
-                ResultSet resultSet = statement.executeQuery()
+
+                ResultSet resultSet =
+                        statement.executeQuery()
         ) {
 
             while (resultSet.next()) {
-                students.add(mapRow(resultSet));
+                students.add(
+                        mapRow(resultSet)
+                );
             }
         }
 
         return students;
     }
 
-    private Student mapRow(ResultSet resultSet)
-            throws SQLException {
+    private Student mapRow(
+            ResultSet resultSet
+    ) throws SQLException {
 
         Date dateOfBirth =
                 resultSet.getDate("date_of_birth");
@@ -200,7 +238,9 @@ public class StudentRepository {
                         ? dateOfBirth.toLocalDate()
                         : null,
                 resultSet.getLong("program_id"),
-                admissionDate.toLocalDate(),
+                admissionDate != null
+                        ? admissionDate.toLocalDate()
+                        : null,
                 resultSet.getString("status")
         );
     }
